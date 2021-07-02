@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <script src="https://kit.fontawesome.com/2caa67ff06.js" crossorigin="anonymous"></script>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link href="css/styles.css" rel="stylesheet">
+  <title>Netflix</title>
+</head>
+
+<body>
+  <!--Beginning of Navbar-->
+  <section id="navSection">
+    <nav class="navbar navbar-expand-xl navbar-dark navbar-bg" id="navbar">
+      <img id="logo" src="assets/netflix_logo.png">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="collapsedContent">
+        <div>
+          <ul class="navbar-nav px-5">
+            <li class="nav-item">
+              <a class="nav-link" href="/index.html">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">TV Shows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Movies</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Recently Added</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">My List</a>
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex">
+          <div class="btn-group dropstart dropdown-search px-2">
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-search" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="fas fa-search"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <div class="searchbox">
+                <form class="d-flex dropdown-search">
+                  <input class="form-control bg-dark dark-search" id="hideable" type="search" placeholder=""
+                    aria-label="Search">
+                  <!--in functioning site submit button goes here-->
+                </form>
+              </div>
+            </ul>
+          </div>
+          <div class="alertbellbox d-flex">
+            <a class="nav-link px-4" href="#">KIDS</a>
+            <i class="btn btn-outline-success far fa-bell dark-search px-4"></i>
+          </div>
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle " href="#" role="button" id="dropdownMenuLink"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="https://ih0.redbubble.net/image.618427277.3222/flat,1000x1000,075,f.u2.jpg"></a>
+            </a>
+            <ul class="dropdown-menu" id="profile-dropdown" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" href="netflix-profile.html">Vardan</a></li>
+              <li><a class="dropdown-item" href="netflix-profile.html">Samuel</a></li>
+              <li><a class="dropdown-item" href="netflix-profile.html">Viljams</a></li>
+              <li><a class="dropdown-item" href="netflix-profile.html">Sarah</a></li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+  </section>
+  <!-- End of Navbar -->
+  <section id="mainbar" class="my-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-6 col-md-5 col-lg-4">
+          <div class="d-flex justify-content-center">
+            <span>
+              <h3>ADD A MOVIE</h3>
+            </span>
+          </div>
+          <form onsubmit="handleSubmit(event)">
+            <div class="">
+              <div>
+                <div class="form-group">
+
+                  <input id="name" type="text" class="form-control form-control-sm" aria-describedby="name" required
+                    placeholder="Movie" />
+                </div>
+                <div class="form-group mt-3">
+                  <input id="category" type="text" class="form-control form-control-sm" aria-describedby="category"
+                    placeholder="Category" />
+                </div>
+                <div class="form-group mt-3">
+                  <input id="image" type="text" class="form-control form-control-sm" aria-describedby="image"
+                    placeholder="Image link" />
+                </div>
+              </div>
+              <div class="form-group mt-3 ml-3">
+                <textarea id="description" type="text" rows="4" class="form-control" aria-describedby="item description"
+                  placeholder="Description"></textarea>
+              </div>
+            </div>
+            <div class="col d-flex justify-content-between m-0 p-0 my-3 ">
+              <input type="submit" class="btn btn-secondary" value="Submit" />
+              <button type="button" id="deleteButton" class="btn btn-danger d-none p-0" onclick="handleDelete()"><i
+                  class="far fa-trash-alt"></i></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Beginning of Footer-->
+
+  <div class="container m-5">
+    <footer>
+      <div class="row justify-content-center" id="socials">
+        <div class="col-12 col-lg-8">
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-youtube"></i>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+          <nav class="nav flex-column">
+            <a class="nav-link" href="#">Audio and Subtitles</a>
+            <a class="nav-link" href="#">Media Center</a>
+            <a class="nav-link" href="#">Privacy</a>
+            <a class="nav-link" href="#">Contact Us</a>
+            <button type="button" class="btn btn-service-code my-4">Service Code</button>
+            <a class="nav-link disabled" href="#">© 1997-2021 Netflix Inc</a>
+          </nav>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+          <nav class="nav flex-column">
+            <a class="nav-link" href="#">Audio Description</a>
+            <a class="nav-link" href="#">Investor Relations</a>
+            <a class="nav-link" href="#">Legal Notices</a>
+          </nav>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+          <nav class="nav flex-column">
+            <a class="nav-link" href="#">Help Center</a>
+            <a class="nav-link" href="#">Jobs</a>
+            <a class="nav-link" href="#">Cookie Preferences</a>
+          </nav>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3 col-lg-2">
+          <nav class="nav flex-column">
+            <a class="nav-link" href="#">Gift Cards</a>
+            <a class="nav-link" href="#">Terms Of Use</a>
+            <a class="nav-link" href="#">Corporate Information</a>
+          </nav>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/20fa2a972a.js" crossorigin="anonymous"></script>
+  <script>
+
+    const urlParams = new URLSearchParams(window.location.search)
+    let movieId = urlParams.get('id')
+    // let parCat = urlParams.get('category')
+    const endpoint = movieId ? "https://striveschool-api.herokuapp.com/api/movies/" + movieId : "https://striveschool-api.herokuapp.com/api/movies/"
+    const method = movieId ? "PUT" : "POST"
+    const authId = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGFlM2M4NWNlYWY0ODAwMTVjOTE4NjgiLCJpYXQiOjE2MjUwNTQyNTUsImV4cCI6MTYyNjI2Mzg1NX0.rXj_QkhfHQmdblgV2a-bcEH3jONVjjEWhonOkCeCPBw"
+
+
+    window.onload = async () => {
+      if (movieId) {
+        const response = await fetch(endpoint, {
+          headers: { "Authorization": `${authId}` },
+          method,
+          headers: {
+            "Authorization": `${authId}`,
+            "Content-Type": "application/json",
+          },
+        })
+        const movie = await response.json()
+        console.log(response);
+        console.log(movie);
+
+        const deleteButton = document.querySelector('#deleteButton')
+        deleteButton.classList.remove('d-none')
+
+        document.getElementById("name").value = movie.name
+        document.getElementById("description").value = movie.description
+        document.getElementById("category").value = movie.category
+        document.getElementById("image").value = movie.imageUrl
+      }
+    }
+
+
+    const handleSubmit = async (event) => {
+      event.preventDefault()
+
+      try {
+        const objMovies = {
+          name: document.getElementById("name").value,
+          description: document.getElementById("description").value,
+          category: document.getElementById("category").value,
+          imageUrl: document.getElementById("image").value,
+        }
+
+        console.log("I am here", objMovies);
+
+        const response = await fetch(endpoint, {
+          method,
+          body: JSON.stringify(objMovies),
+          headers: {
+            "Authorization": `${authId}`,
+            "Content-Type": "application/json",
+          },
+        })
+        if (response.ok) {
+          const movieCategory = response.json()
+          alert('Appointment created succesffuly with an id of' + movieCategory._id)
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    }
+
+          const handleDelete = async () => {
+        console.log("clicked");
+        try {
+          const response = await fetch(endpoint, {
+            
+            headers: {
+            "Authorization": `${authId}`,
+            "Content-Type": "application/json",
+          }, 
+          method: "DELETE" });
+          
+          console.log("this is it",response);
+          if(response.ok){
+            alert("Item is deleted succesfully")
+            window.location.assign("/index.html")
+          } else {
+            alert("Deletion process is unsuccesful")
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+
+  </script>
+</body>
+
+</html>
