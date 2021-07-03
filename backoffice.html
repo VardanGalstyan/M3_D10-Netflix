@@ -18,7 +18,7 @@
   <!--Beginning of Navbar-->
   <section id="navSection">
     <nav class="navbar navbar-expand-xl navbar-dark navbar-bg" id="navbar">
-      <img id="logo" src="assets/netflix_logo.png">
+      <a href="./index.html"><img id="logo" src="assets/netflix_logo.png"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -79,7 +79,7 @@
     </nav>
   </section>
   <!-- End of Navbar -->
-  <section id="mainbar" class="my-5">
+  <section id="mainbar">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-sm-6 col-md-5 col-lg-4">
@@ -88,6 +88,7 @@
               <h3>ADD A MOVIE</h3>
             </span>
           </div>
+          <span id="alert-box"></span>
           <form onsubmit="handleSubmit(event)">
             <div class="">
               <div>
@@ -98,11 +99,11 @@
                 </div>
                 <div class="form-group mt-3">
                   <input id="category" type="text" class="form-control form-control-sm" aria-describedby="category"
-                    placeholder="Category" />
+                    placeholder="Category" required />
                 </div>
                 <div class="form-group mt-3">
                   <input id="image" type="text" class="form-control form-control-sm" aria-describedby="image"
-                    placeholder="Image link" />
+                    placeholder="Image link" required />
                 </div>
               </div>
               <div class="form-group mt-3 ml-3">
@@ -111,9 +112,14 @@
               </div>
             </div>
             <div class="col d-flex justify-content-between m-0 p-0 my-3 ">
-              <input type="submit" class="btn btn-secondary" value="Submit" />
-              <button type="button" id="deleteButton" class="btn btn-danger d-none p-0" onclick="handleDelete()"><i
-                  class="far fa-trash-alt"></i></button>
+              <button type="submit" class="btn btn-secondary" value="Submit">
+                <div id="loader" class="spinner-border spinner-border-sm d-none" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div> Submit
+              </button>
+              <button type="button" id="deleteButton" width="20px" class="btn btn-danger d-none p-0 ml-2" onclick="handleDelete()">
+                <i class="far fa-trash-alt"></i>
+              </button>
             </div>
           </form>
         </div>
@@ -194,8 +200,7 @@
           },
         })
         const movie = await response.json()
-        console.log(response);
-        console.log(movie);
+
 
         const deleteButton = document.querySelector('#deleteButton')
         deleteButton.classList.remove('d-none')
@@ -210,6 +215,7 @@
 
     const handleSubmit = async (event) => {
       event.preventDefault()
+      loader(true)
 
       try {
         const objMovies = {
@@ -218,8 +224,6 @@
           category: document.getElementById("category").value,
           imageUrl: document.getElementById("image").value,
         }
-
-        console.log("I am here", objMovies);
 
         const response = await fetch(endpoint, {
           method,
@@ -231,35 +235,64 @@
         })
         if (response.ok) {
           const movieCategory = response.json()
-          alert('Appointment created succesffuly with an id of' + movieCategory._id)
+          showAlert('success', `Appointment created succesffuly with an id of  ${movieCategory._id}`)
         }
+        loader(false)
+        window.location.assign("/index.html")
       } catch (error) {
         console.log(error.message);
       }
     }
 
-          const handleDelete = async () => {
-        console.log("clicked");
-        try {
-          const response = await fetch(endpoint, {
-            
-            headers: {
+    const handleDelete = async () => {
+      const confirmed = confirm("Are you sure you want to delete this?")
+      loader(true)
+
+      try {
+        const response = await fetch(endpoint, {
+
+          headers: {
             "Authorization": `${authId}`,
             "Content-Type": "application/json",
-          }, 
-          method: "DELETE" });
-          
-          console.log("this is it",response);
-          if(response.ok){
-            alert("Item is deleted succesfully")
-            window.location.assign("/index.html")
-          } else {
-            alert("Deletion process is unsuccesful")
-          }
-        } catch (error) {
-          console.log(error);
+          },
+          method: "DELETE"
+        });
+
+
+        if (response.ok) {
+          loader(false)
+          showAlert('success', `The item is Successfully deleted!`)
+          window.location.assign("/index.html")
+        } else {
+          showAlert('danger', `Deletion is aborted!`)
         }
+      } catch (error) {
+        console.log(error);
       }
+    }
+
+    const loader = (loading) => {
+      if (loading) {
+        document.querySelector("#loader").classList.remove('d-none')
+      } else {
+        document.querySelector("#loader").classList.add('d-none')
+      }
+    }
+
+    const showAlert = (type, msg) => {
+
+      const alertContainer = document.getElementById("alert-box")
+
+      alertContainer.innerHTML = `
+        <div class="alert alert-${type}" role="alert">
+          ${msg}
+        </div>`
+
+
+      setTimeout(() => {
+        alertContainer.innerHTML = ""
+      }, 4000)
+    }
 
 
   </script>

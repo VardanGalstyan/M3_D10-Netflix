@@ -152,10 +152,7 @@
       let parId = urlParams.get('id')
       let parCat = urlParams.get('category')
       console.log(parId, parCat);
-      let  joinSlash = (parCat+"/").split(' ').join("")
-      console.log(joinSlash);
-      // let newEndpoint = (url+ joinSlash + parId);
-      // console.log(newEndpoint);
+    
 
       window.onload = async () => {
         const response = await fetch (url + parCat, {
