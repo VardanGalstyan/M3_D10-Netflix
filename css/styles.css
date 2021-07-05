@@ -153,9 +153,11 @@ img, svg {
 }
 
 .movies {
-    width: 99%;
+    width: 100%;
     transition: 0.3s;
-    opacity: 0.7;
+    opacity: 1;
+    object-fit: cover;
+    padding: 0px;
 }
 
 #genredetails {
@@ -335,9 +337,28 @@ img, svg {
 
 /* STANDARD MOVIE CARDS - START*/
 
-.card-dody {
-    justify-content: center;
+#card-body {
+    display: none;
+}
 
+#card:hover {
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.4s both;
+    padding: 0px;
+    
+}
+
+@keyframes scale-up-center {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.4);
+    }
+}
+
+.card-body {
+    justify-content: center;
+    
 }
 
 .card-body span{
@@ -365,6 +386,14 @@ img, svg {
     color: rgba(192, 192, 192, 0.534);
 }
 
+#sectionOne .col-sm-12>span>p{
+    font-size: 11px;
+    color: rgba(192, 192, 192, 0.534);
+    margin-top: 20px;
+    padding: 5px;
+}
+
+
 /* STANDARD MOVIE CARDS - END*/
 
 /* FOOTER START */
@@ -372,7 +401,6 @@ img, svg {
 footer {
 
     width: 100%;
-    /* margin-bottom: 30px; */
     justify-content: center;
     align-items: center;
     left: 0;

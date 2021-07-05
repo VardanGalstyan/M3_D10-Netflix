@@ -329,6 +329,35 @@ body {
     color: #EE352A;
 }
 
+.card #buttons button:first-child {
+    margin-right: 10px;
+    width: 150px;
+    height: 42px;
+    align-items: center;
+}
+.card #buttons button:first-child>div {
+    
+    align-items: center;
+}
+
+.card #buttons button:not(:first-child) {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: transparent;
+    color: white;
+}
+.card #buttons button:not(:first-child)>div {
+    align-items: center;
+
+}
+
+.card #buttons button:not(:first-child) svg {
+    padding-right: 3px;
+    padding-bottom: 2px;
+}
+
 main p:nth-child(2) {
   width: 35%;
 }
